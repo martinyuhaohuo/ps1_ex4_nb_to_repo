@@ -9,4 +9,6 @@ dependencies:
   - wordcloud
   - scikit-learn
   - seaborn
+  - ipykernel
+  - jupyter
 prefix: /opt/anaconda3/envs/titanic_env
