@@ -10,4 +10,5 @@ dependencies:
   - numpy
   - pandas
   - ipykernel
+  - pathlib
 prefix: /home/sjlambert/miniconda3/envs/titanic_env
