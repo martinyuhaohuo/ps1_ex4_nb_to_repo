@@ -3,10 +3,10 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 
 def aggregate_data(df1, df2):
-    all_df = pd.concat([df1, df2], axis=0)
-    all_df["set"] = "train"
-    all_df.loc[all_df.Survived.isna(), "set"] = "test"
-    return all_df
+    df_new = pd.concat([df1, df2], axis=0)
+    df_new["set"] = "train"
+    df_new.loc[all_df.Survived.isna(), "set"] = "test"
+    return df_new
 
 def family_size(df):
     df["Family Size"] = df["SibSp"] + df["Parch"] + 1
@@ -59,11 +59,6 @@ def sexandpclass(df):
     df["Sex_Pclass"] = df.apply(lambda row: row['Sex'][0].upper() + "_C" + str(row["Pclass"]), axis=1)
     return df
 
-# Plot count pairs using all_df for the column "Fare Interval" and "Fare (grouped by survival)" with "Survived" as hue
-all_df_gb_survival = all_df.groupby(by="Survived").mean(numeric_only=True)
-plot_count_pairs("Fare Interval", all_df, huevar="Survived")
-plot_count_pairs("Fare", all_df_gb_survival, huevar="Survived")
-
 def parse_names(row):
     try:
         text = row["Name"]
@@ -84,8 +79,28 @@ def parse_names(row):
     except Exception as ex:
         print(f"Exception: {ex}")
         
-    def apply_parsed_names(df):
-        df[["Family Name", "Title", "Given Name", "Maiden Name"]] = df.apply(lambda row: parse_names(row), axis=1)
-        return df
+def apply_parsed_names(df):
+    df[["Family Name", "Title", "Given Name", "Maiden Name"]] = df.apply(lambda row: parse_names(row), axis=1)
+    return df
     
-    apply_parsed_names
+def prepare(df1, df2):
+    for dataset in [df1, df2]:
+        dataset["Titles"] = dataset["Title"]
+    return dataset
+            
+def title_classification(df1, df2):
+    for dataset in [df1, df2]:
+        #unify `Miss`
+        dataset['Titles'] = dataset['Titles'].replace('Mlle.', 'Miss.')
+        dataset['Titles'] = dataset['Titles'].replace('Ms.', 'Miss.')
+        #unify `Mrs`
+        dataset['Titles'] = dataset['Titles'].replace('Mme.', 'Mrs.')
+        # unify Rare
+        dataset['Titles'] = dataset['Titles'].replace(['Lady.', 'the Countess.','Capt.', 'Col.',\
+        'Don.', 'Dr.', 'Major.', 'Rev.', 'Sir.', 'Jonkheer.', 'Dona.'], 'Rare')
+        return dataset
+        
+def title_sex_gb(df):
+    df[['Titles', 'Sex', 'Survived']].groupby(['Titles', 'Sex'], as_index=False).mean()
+        
+    
