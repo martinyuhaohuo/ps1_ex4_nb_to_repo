@@ -1,0 +1,12 @@
+name: titanic_env
+channels:
+  - defaults
+dependencies:
+  - python=3.12
+  - numpy
+  - pandas
+  - matplotlib
+  - wordcloud
+  - scikit-learn
+  - seaborn
+prefix: /opt/anaconda3/envs/titanic_env
