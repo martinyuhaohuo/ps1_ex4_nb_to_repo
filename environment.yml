@@ -3,10 +3,11 @@ channels:
   - defaults
 dependencies:
   - python=3.12
+  - seaborn
+  - scikit-learn
+  - wordcloud
+  - matplotlib
   - numpy
   - pandas
-  - matplotlib
-  - wordcloud
-  - scikit-learn
-  - seaborn
-prefix: /opt/anaconda3/envs/titanic_env
+  - ipykernel
+prefix: /home/sjlambert/miniconda3/envs/titanic_env
