@@ -27,7 +27,6 @@ def plot_distribution(distcol, df):
     g = sns.histplot(df.loc[:, distcol], 
                                     ax=ax)
     ax.set_title(f"Number of passengers / {distcol}")
-    g.legend()
     plt.show()
 
 def plot_distribution_pairs(distcol, huecol, df):
