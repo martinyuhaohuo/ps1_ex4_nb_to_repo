@@ -7,19 +7,25 @@ name = "titanic-analysis"
 version = "0.1.0"
 description = "Data analysis and machine learning pipeline for the Titanic dataset"
 authors = [
-    { name = "Your Name", email = "your.email@example.com" }
+    { name = "Yuhao Huo", email = "yh620@cam.ac.uk" }
+    { name = "Stephen Lambert", email = "sjl225@cam.ac.uk" }
+    { name = "Hsin-Ta Tsai", email = "htt29@cam.ac.uk" }
+    { name = "Guoyu Wang", email = "gw498@cam.ac.uk" }
 ]
 dependencies = [
-    "pandas",
-    "matplotlib",
     "seaborn",
-    "scikit-learn"
+    "scikit-learn",
+    "wordcloud",
+    "matplotlib",
+    "numpy",
+    "pandas",
+    "ipykernel",
+    "pathlib"
 ]
-python_requires = ">=3.7"
+python_requires = "=3.12"
 
 [project.urls]
-homepage = "https://github.com/yourusername/titanic-analysis"
-documentation = "https://yourusername.github.io/titanic-analysis"
+homepage = "https://github.com/martinyuhaohuo/ps1_ex4_nb_to_repo"
 
 [tool.setuptools.packages.find]
 where = ["src"]
