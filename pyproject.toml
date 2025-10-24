@@ -1,0 +1,31 @@
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "titanic-analysis"
+version = "0.1.0"
+description = "Data analysis and machine learning pipeline for the Titanic dataset"
+authors = [
+    { name = "Your Name", email = "your.email@example.com" }
+]
+dependencies = [
+    "pandas",
+    "matplotlib",
+    "seaborn",
+    "scikit-learn"
+]
+python_requires = ">=3.7"
+
+[project.urls]
+homepage = "https://github.com/yourusername/titanic-analysis"
+documentation = "https://yourusername.github.io/titanic-analysis"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+"titanic_analysis" = ["data/*.csv"]
+
+[tool.setuptools]
+include-package-data = true

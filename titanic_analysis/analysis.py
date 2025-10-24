@@ -5,7 +5,8 @@ import seaborn as sns
 def aggregate_data(df1, df2):
     df_new = pd.concat([df1, df2], axis=0)
     df_new["set"] = "train"
-    df_new.loc[all_df.Survived.isna(), "set"] = "test"
+    df_new.loc[df_new.Survived.isna(), "set"] = "test"
+    df_new = df_new.reset_index(drop=True)
     return df_new
 
 def family_size(df):
