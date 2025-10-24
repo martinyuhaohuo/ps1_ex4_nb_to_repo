@@ -1,0 +1,1 @@
+Refactor the Jupyter Notebook from the Titanic Kaggle competition into a well-structured repository with proper software engineering practices.
