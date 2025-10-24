@@ -22,6 +22,14 @@ def add_age_cat(df):
     df.loc[ df['Age'] > 64, 'Age Interval'] = 4
     return df
 
+def plot_distribution(distcol, df):
+    f, ax = plt.subplots(1, 1, figsize=(8, 4))
+    g = sns.histplot(df.loc[:, distcol], 
+                                    ax=ax)
+    ax.set_title(f"Number of passengers / {distcol}")
+    g.legend()
+    plt.show()
+
 def plot_distribution_pairs(distcol, huecol, df):
     f, ax = plt.subplots(1, 1, figsize=(8, 4))
     for i, h in enumerate(df[huecol].unique()):
@@ -84,13 +92,11 @@ def apply_parsed_names(df):
     df[["Family Name", "Title", "Given Name", "Maiden Name"]] = df.apply(lambda row: parse_names(row), axis=1)
     return df
     
-def prepare(df1, df2):
-    for dataset in [df1, df2]:
-        dataset["Titles"] = dataset["Title"]
-    return dataset
+def prepare(df):
+    df["Titles"] = df["Title"]
+    return df
             
-def title_classification(df1, df2):
-    for dataset in [df1, df2]:
+def title_classification(dataset):
         #unify `Miss`
         dataset['Titles'] = dataset['Titles'].replace('Mlle.', 'Miss.')
         dataset['Titles'] = dataset['Titles'].replace('Ms.', 'Miss.')
