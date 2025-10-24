@@ -1,3 +1,7 @@
+"""
+Model training module for Titanic analysis.
+"""
+
 import pandas
 from sklearn.ensemble import RandomForestClassifier
 
